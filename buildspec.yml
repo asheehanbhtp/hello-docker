@@ -16,4 +16,4 @@ artifacts:
     - build.json
     - cfn/service.yml
     - cfn/environments/production.json
-discard-paths: yes
+  discard-paths: yes
