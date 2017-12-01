@@ -1,0 +1,35 @@
+Parameters:
+  Cluster:
+    Type: String
+  DesiredCount:
+    Type: String
+  Image:
+    Type: String
+  Role:
+    Type: String
+  TargetGroupArn:
+    Type: String
+
+Resources:
+  Service:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !Ref Cluster
+      DesiredCount: !Ref DesiredCount
+      Role: !Ref Role
+      TaskDefinition: !Ref TaskDefinition
+      LoadBalancers:
+        - ContainerName: hello-world-container
+          ContainerPort: 80
+          TargetGroupArn: !Ref TargetGroupArn
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: hello-world-task
+      ContainerDefinitions:
+        - Name: hello-world-container
+          Image: !Ref Image
+          Memory: 512
+          PortMappings:
+            - ContainerPort: 80
