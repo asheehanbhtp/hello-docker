@@ -10,7 +10,7 @@ phases:
     post-build:
       commands:
         - docker push "${REPOSITORY}:${TAG}"
-        - printf '{ "Image": "%s:%s" }' $REPOSITORY $TAG > build.json
+        - printf '{"Image":"%s:%s"}' $REPOSITORY $TAG > build.json
 artifacts:
   files:
     - build.json
