@@ -4,13 +4,13 @@ phases:
     commands:
       - $(aws ecr get-login)
       - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
-    build:
-      commands:
-        - docker build -t "${REPOSITORY}:${TAG}" .
-    post-build:
-      commands:
-        - docker push "${REPOSITORY}:${TAG}"
-        - printf '{"Image":"%s:%s"}' $REPOSITORY $TAG > build.json
+  build:
+    commands:
+      - docker build -t "${REPOSITORY}:${TAG}" .
+  post-build:
+    commands:
+      - docker push "${REPOSITORY}:${TAG}"
+      - printf '{"Image":"%s:%s"}' $REPOSITORY $TAG > build.json
 artifacts:
   files:
     - build.json
