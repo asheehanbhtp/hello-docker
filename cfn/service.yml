@@ -27,10 +27,10 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: hello-world-task
+      NetworkMode: awsvpc
       ContainerDefinitions:
         - Name: hello-world-container
           Image: !Ref Image
           Memory: 512
-          NetworkMode: awsvpc
           PortMappings:
             - ContainerPort: 80
