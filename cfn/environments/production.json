@@ -2,7 +2,7 @@
     "Parameters": {
         "Cluster": "hello-world-cluster",
         "DesiredCount": "2",
-        "Role": "AWSServiceRoleForECS",
+        "Role": "ecsServiceRole",
         "TargetGroupArn": "",
         "Image": {
             "Fn::GetParam": [ "MyAppBuild", "build.json", "Image" ]
