@@ -1,7 +1,7 @@
 FROM node:8
 
 ENV PORT=80
-ENV NAME=World
+ENV NAME=Docker
 
 EXPOSE $PORT
 
