@@ -2,8 +2,8 @@
     "Parameters": {
         "Cluster": "hello-world-cluster",
         "DesiredCount": "2",
-        "Role": "ecsServiceRole",
-        "TargetGroupArn": "",
+        "Role": "AWSServiceRoleForECS",
+        "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:047362787997:targetgroup/hello-world-loader/04da36f3d3c1b453",
         "Image": {
             "Fn::GetParam": [ "MyAppBuild", "build.json", "Image" ]
         }
