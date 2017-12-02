@@ -21,6 +21,7 @@ Resources:
       LoadBalancers:
         - ContainerName: hello-world-container
           ContainerPort: 80
+          LoadBalancerName: hello-world-loader
           TargetGroupArn: !Ref TargetGroupArn
 
   TaskDefinition:
