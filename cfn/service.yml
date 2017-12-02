@@ -16,21 +16,37 @@ Resources:
     Properties:
       Cluster: !Ref Cluster
       DesiredCount: !Ref DesiredCount
-      Role: !Ref Role
+      LaunchType: FARGATE
+      ServiceName: hello-world-service
       TaskDefinition: !Ref TaskDefinition
       LoadBalancers:
         - ContainerName: hello-world-container
           ContainerPort: 80
           TargetGroupArn: !Ref TargetGroupArn
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - sg-ca5532bf
+          Subnets:
+            - subnet-8ee0c3c7
+            - subnet-21640f7a
 
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
+      Cpu: 256
+      ExecutionRoleArn: arn:aws:iam::047362787997:role/ecsTaskExecutionRole
       Family: hello-world-task
+      Memory: 512
       NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
       ContainerDefinitions:
         - Name: hello-world-container
+          Essential: true
           Image: !Ref Image
           Memory: 512
           PortMappings:
             - ContainerPort: 80
+              Protocol: tcp
